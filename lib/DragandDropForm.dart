@@ -153,7 +153,9 @@ class _DragAndDropState extends State<DragAndDrop> {
                                 }
                                 if (data == 14) {
                                   list.add(listFields(
-                                      title: "Signature", child: SignatureP()));
+                                      title: "Signature",
+                                      child:
+                                          signaturePad(color: Colors.black)));
                                 }
                               },
                               onLeave: (data) {},
@@ -164,7 +166,7 @@ class _DragAndDropState extends State<DragAndDrop> {
                           padding: const EdgeInsets.all(20),
                           height: 400,
                           color: Colors.white,
-                          child: Column(
+                          child: ListView(
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width,
@@ -185,23 +187,126 @@ class _DragAndDropState extends State<DragAndDrop> {
                               ),
                               Row(
                                 children: [
-                                  const Text(
-                                    "Name",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "Required",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15),
+                                    ),
                                   ),
-                                  const SizedBox(
-                                    width: 30,
+                                  Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Checkbox(
+                                            value: false, onChanged: null),
+                                      ))
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "Name",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15),
+                                    ),
                                   ),
-                                  Text(
-                                    name,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.black,
-                                        fontSize: 15),
+                                  Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: formTextFeild(
+                                            context: context, hintText: name),
+                                      ))
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "Help Text",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15),
+                                    ),
                                   ),
+                                  Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: formTextFeild(
+                                          context: context,
+                                        ),
+                                      ))
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "Placeholder",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: formTextFeild(
+                                          context: context,
+                                        ),
+                                      ))
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      "Options",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 5,
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          name,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black,
+                                              fontSize: 15),
+                                        ),
+                                      ))
                                 ],
                               ),
                               const SizedBox(
@@ -210,49 +315,62 @@ class _DragAndDropState extends State<DragAndDrop> {
                               Container(
                                 height: 200,
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Column(
-                                      children: [
-                                        const Text(
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
                                           "Access",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
                                               fontSize: 15),
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                    const SizedBox(
-                                      width: 30,
-                                    ),
-                                    SizedBox(
-                                      height: 200,
-                                      width: 300,
-                                      child: ListView.builder(
-                                          itemCount: _kOptions.length,
-                                          itemBuilder: (context, index) {
-                                            return Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Transform.scale(
-                                                scale: 0.8,
-                                                child: CheckboxListTile(
-                                                  title: Text(_kOptions[index]),
-                                                  value: isChecked![index],
-                                                  onChanged: (newValue) {
-                                                    print(newValue);
-                                                    isChecked![index] =
-                                                        newValue!;
-                                                    setState(() {});
-                                                  },
-                                                  controlAffinity:
-                                                      ListTileControlAffinity
-                                                          .leading, //  <-- leading Checkbox
-                                                ),
-                                              ),
-                                            );
-                                          }),
-                                    ),
+                                    Expanded(
+                                        flex: 5,
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: SizedBox(
+                                            height: 200,
+                                            width: 300,
+                                            child: ListView.builder(
+                                                itemCount: _kOptions.length,
+                                                itemBuilder: (context, index) {
+                                                  return Container(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Transform.scale(
+                                                      scale: 0.8,
+                                                      child: CheckboxListTile(
+                                                        visualDensity:
+                                                            VisualDensity(
+                                                                horizontal:
+                                                                    -4.0,
+                                                                vertical: -4),
+                                                        contentPadding:
+                                                            EdgeInsets.all(0),
+                                                        title: Text(
+                                                            _kOptions[index]),
+                                                        value:
+                                                            isChecked![index],
+                                                        onChanged: (newValue) {
+                                                          print(newValue);
+                                                          isChecked![index] =
+                                                              newValue!;
+                                                          setState(() {});
+                                                        },
+                                                        controlAffinity:
+                                                            ListTileControlAffinity
+                                                                .leading, //  <-- leading Checkbox
+                                                      ),
+                                                    ),
+                                                  );
+                                                }),
+                                          ),
+                                        ))
                                   ],
                                 ),
                               )
@@ -271,213 +389,313 @@ class _DragAndDropState extends State<DragAndDrop> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "AutoComplete", icon: Icons.comment),
-                          feedback: RightSideWidget(
-                              title: "AutoComplete", icon: Icons.comment),
-                          childWhenDragging: RightSideWidget(
-                              title: "AutoComplete", icon: Icons.comment),
-                          data: 1,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "AutoComplete", child: autoComWidget()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            feedback: RightSideWidget(
+                                title: "AutoComplete", icon: Icons.comment),
+                            childWhenDragging: RightSideWidget(
+                                title: "AutoComplete", icon: Icons.comment),
+                            data: 1,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                            child: RightSideWidget(
+                                title: "AutoComplete", icon: Icons.comment),
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Button", icon: Icons.smart_button),
-                          feedback: RightSideWidget(
-                              title: "Button", icon: Icons.smart_button),
-                          childWhenDragging: RightSideWidget(
-                              title: "Button", icon: Icons.smart_button),
-                          data: 2,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Button", child: ButtonWidget()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Button", icon: Icons.smart_button),
+                            feedback: RightSideWidget(
+                                title: "Button", icon: Icons.smart_button),
+                            childWhenDragging: RightSideWidget(
+                                title: "Button", icon: Icons.smart_button),
+                            data: 2,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Checkbox Group", icon: Icons.check_box),
-                          feedback: RightSideWidget(
-                              title: "Checkbox Group", icon: Icons.check_box),
-                          childWhenDragging: RightSideWidget(
-                              title: "Checkbox Group", icon: Icons.check_box),
-                          data: 3,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Checkbox", child: checkboxName()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Checkbox Group", icon: Icons.check_box),
+                            feedback: RightSideWidget(
+                                title: "Checkbox Group", icon: Icons.check_box),
+                            childWhenDragging: RightSideWidget(
+                                title: "Checkbox Group", icon: Icons.check_box),
+                            data: 3,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Date Field", icon: Icons.date_range),
-                          feedback: RightSideWidget(
-                              title: "Date Field", icon: Icons.date_range),
-                          childWhenDragging: RightSideWidget(
-                              title: "Date Field", icon: Icons.date_range),
-                          data: 4,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Date Field", child: dateField()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Date Field", icon: Icons.date_range),
+                            feedback: RightSideWidget(
+                                title: "Date Field", icon: Icons.date_range),
+                            childWhenDragging: RightSideWidget(
+                                title: "Date Field", icon: Icons.date_range),
+                            data: 4,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "File Upload", icon: Icons.upload),
-                          feedback: RightSideWidget(
-                              title: "File Upload", icon: Icons.upload),
-                          childWhenDragging: RightSideWidget(
-                              title: "File Upload", icon: Icons.upload),
-                          data: 5,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(
+                                listFields(title: "", child: autoComWidget()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "File Upload", icon: Icons.upload),
+                            feedback: RightSideWidget(
+                                title: "File Upload", icon: Icons.upload),
+                            childWhenDragging: RightSideWidget(
+                                title: "File Upload", icon: Icons.upload),
+                            data: 5,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Header", icon: Icons.view_headline),
-                          feedback: RightSideWidget(
-                              title: "Header", icon: Icons.view_headline),
-                          childWhenDragging: RightSideWidget(
-                              title: "Header", icon: Icons.view_headline),
-                          data: 6,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(
+                                listFields(title: "Header", child: textName()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Header", icon: Icons.view_headline),
+                            feedback: RightSideWidget(
+                                title: "Header", icon: Icons.view_headline),
+                            childWhenDragging: RightSideWidget(
+                                title: "Header", icon: Icons.view_headline),
+                            data: 6,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Hidden Input", icon: Icons.input),
-                          feedback: RightSideWidget(
-                              title: "Hidden Input", icon: Icons.input),
-                          childWhenDragging: RightSideWidget(
-                              title: "Hidden Input", icon: Icons.input),
-                          data: 7,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Header", child: hiddenInputField()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Hidden Input", icon: Icons.input),
+                            feedback: RightSideWidget(
+                                title: "Hidden Input", icon: Icons.input),
+                            childWhenDragging: RightSideWidget(
+                                title: "Hidden Input", icon: Icons.input),
+                            data: 7,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Number", icon: Icons.numbers),
-                          feedback: RightSideWidget(
-                              title: "Number", icon: Icons.numbers),
-                          childWhenDragging: RightSideWidget(
-                              title: "Number", icon: Icons.numbers),
-                          data: 8,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Number", child: textNumberFieldForm()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Number", icon: Icons.numbers),
+                            feedback: RightSideWidget(
+                                title: "Number", icon: Icons.numbers),
+                            childWhenDragging: RightSideWidget(
+                                title: "Number", icon: Icons.numbers),
+                            data: 8,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Paragraph", icon: Icons.text_fields),
-                          feedback: RightSideWidget(
-                              title: "Paragraph", icon: Icons.text_fields),
-                          childWhenDragging: RightSideWidget(
-                              title: "Paragraph", icon: Icons.text_fields),
-                          data: 9,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Paragraph", child: paragraph()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Paragraph", icon: Icons.text_fields),
+                            feedback: RightSideWidget(
+                                title: "Paragraph", icon: Icons.text_fields),
+                            childWhenDragging: RightSideWidget(
+                                title: "Paragraph", icon: Icons.text_fields),
+                            data: 9,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Radio Group",
-                              icon: Icons.radio_button_checked_sharp),
-                          feedback: RightSideWidget(
-                              title: "Radio Group",
-                              icon: Icons.radio_button_checked_sharp),
-                          childWhenDragging: RightSideWidget(
-                              title: "Radio Group",
-                              icon: Icons.radio_button_checked_sharp),
-                          data: 10,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Radio Group",
+                                child: radioButtonWidget()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Radio Group",
+                                icon: Icons.radio_button_checked_sharp),
+                            feedback: RightSideWidget(
+                                title: "Radio Group",
+                                icon: Icons.radio_button_checked_sharp),
+                            childWhenDragging: RightSideWidget(
+                                title: "Radio Group",
+                                icon: Icons.radio_button_checked_sharp),
+                            data: 10,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Select", icon: Icons.select_all),
-                          feedback: RightSideWidget(
-                              title: "Select", icon: Icons.select_all),
-                          childWhenDragging: RightSideWidget(
-                              title: "Select", icon: Icons.select_all),
-                          data: 11,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Select", child: spinnerWidget()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Select", icon: Icons.select_all),
+                            feedback: RightSideWidget(
+                                title: "Select", icon: Icons.select_all),
+                            childWhenDragging: RightSideWidget(
+                                title: "Select", icon: Icons.select_all),
+                            data: 11,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Text Field",
-                              icon: Icons.format_textdirection_l_to_r),
-                          feedback: RightSideWidget(
-                              title: "Text Field",
-                              icon: Icons.format_textdirection_l_to_r),
-                          childWhenDragging: RightSideWidget(
-                              title: "Text Field",
-                              icon: Icons.format_textdirection_l_to_r),
-                          data: 12,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Text Field", child: textFieldForm()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Text Field",
+                                icon: Icons.format_textdirection_l_to_r),
+                            feedback: RightSideWidget(
+                                title: "Text Field",
+                                icon: Icons.format_textdirection_l_to_r),
+                            childWhenDragging: RightSideWidget(
+                                title: "Text Field",
+                                icon: Icons.format_textdirection_l_to_r),
+                            data: 12,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Text Area",
-                              icon: Icons.area_chart_outlined),
-                          feedback: RightSideWidget(
-                              title: "Text Area",
-                              icon: Icons.area_chart_outlined),
-                          childWhenDragging: RightSideWidget(
-                              title: "Text Area",
-                              icon: Icons.area_chart_outlined),
-                          data: 13,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Text Area", child: textFieldForm()));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Text Area",
+                                icon: Icons.area_chart_outlined),
+                            feedback: RightSideWidget(
+                                title: "Text Area",
+                                icon: Icons.area_chart_outlined),
+                            childWhenDragging: RightSideWidget(
+                                title: "Text Area",
+                                icon: Icons.area_chart_outlined),
+                            data: 13,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
-                        Draggable(
-                          child: RightSideWidget(
-                              title: "Signature",
-                              icon: Icons.area_chart_outlined),
-                          feedback: RightSideWidget(
-                              title: "Signature",
-                              icon: Icons.area_chart_outlined),
-                          childWhenDragging: RightSideWidget(
-                              title: "Signature",
-                              icon: Icons.area_chart_outlined),
-                          data: 14,
-                          onDragStarted: () {},
-                          onDragCompleted: () {},
-                          onDragEnd: (details) {},
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {},
+                        GestureDetector(
+                          onTap: () {
+                            list.add(listFields(
+                                title: "Signature",
+                                child: signaturePad(color: Colors.black)));
+                            setState(() {});
+                          },
+                          child: Draggable(
+                            child: RightSideWidget(
+                                title: "Signature",
+                                icon: Icons.area_chart_outlined),
+                            feedback: RightSideWidget(
+                                title: "Signature",
+                                icon: Icons.area_chart_outlined),
+                            childWhenDragging: RightSideWidget(
+                                title: "Signature",
+                                icon: Icons.area_chart_outlined),
+                            data: 14,
+                            onDragStarted: () {},
+                            onDragCompleted: () {},
+                            onDragEnd: (details) {},
+                            onDraggableCanceled:
+                                (Velocity velocity, Offset offset) {},
+                          ),
                         ),
                       ],
                     ),
@@ -853,7 +1071,7 @@ class _DragAndDropState extends State<DragAndDrop> {
     );
   }
 
-  Widget SignatureP({Color color = Colors.white}) {
+  Widget signaturePad({Color color = Colors.white}) {
     return Card(
       child: Container(
           height: 150,
@@ -874,3 +1092,87 @@ class _DragAndDropState extends State<DragAndDrop> {
     );
   }
 }
+
+Widget formTextFeild(
+        {String? hintText,
+        String? validation(String? val)?,
+        TextEditingController? controller,
+        FocusNode? focusNode,
+        FocusNode? nextFocusNode,
+        textInputType = TextInputType.text,
+        textCapitalization = TextCapitalization.sentences,
+        TextInputAction? textInputAction,
+        int maxLine = 1,
+        int maxLength = 100,
+        bool obscureText = false,
+        bool suffixIcon = false,
+        bool prefixIcon = false,
+        String? prefixImage,
+        bool readOnly = false,
+        VoidCallback? suffixFuncton,
+        VoidCallback? onPress,
+        required BuildContext context}) =>
+    TextFormField(
+      scrollPadding: const EdgeInsets.all(0),
+      maxLines: maxLine,
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(maxLength),
+      ],
+      validator: validation,
+      // onSaved: save!,
+      obscureText: obscureText,
+      controller: controller,
+      focusNode: focusNode,
+      readOnly: readOnly,
+      style: TextStyle(color: Colors.black),
+      keyboardType: textInputType,
+      cursorColor: Colors.black,
+      textInputAction: textInputAction,
+      onTap: onPress,
+      onFieldSubmitted: (str) => {
+        nextFocusNode != null
+            ? FocusScope.of(context).requestFocus(nextFocusNode)
+            : FocusScope.of(context).requestFocus(new FocusNode()),
+      },
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.black),
+        border: InputBorder.none,
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            borderSide: BorderSide(color: Colors.black)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            borderSide: BorderSide(color: Colors.black)),
+        suffixIcon: suffixIcon
+            ? Container(
+                child: Transform.scale(
+                  scale: 0.65,
+                  child: IconButton(
+                    onPressed: suffixFuncton,
+                    icon: /*assetImageHelper(
+                        image: obscureText
+                            ? ImageAssets.eye_white
+                            : ImageAssets.eye_white)*/
+                        Icon(
+                      obscureText ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.black,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              )
+            : null,
+        /*prefixIcon: prefixIcon
+            ? Container(
+          child: Transform.scale(
+            scale: 0.65,
+            child: IconButton(
+              icon: assetImageHelper(image: prefixImage),
+              onPressed: () {},
+            ),
+          ),
+        )
+            : null,*/
+      ),
+    );
